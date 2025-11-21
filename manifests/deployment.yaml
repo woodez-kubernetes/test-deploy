@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mongodb-testing
   annotations:
-        checksum/git-commit: 55ac6759bc0020e1c58ca2a66f7436c3a732fc20
+        checksum/git-commit: 44a969b5faf6bbf96038b30e4018261945d2f3be
 spec:
   replicas: 1
   selector:
