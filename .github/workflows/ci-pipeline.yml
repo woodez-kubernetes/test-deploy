@@ -34,7 +34,8 @@ jobs:
           
           # Replace the unique image tag placeholder (PLACEHOLDER_IMAGE_TAG)
           # sed -i "s|PLACEHOLDER_IMAGE_TAG|$NEW_TAG|g" "$MANIFEST"
-          
+          sed -i "image: kwood475/python-mongodb-test:/c\        image: kwood475\/python-mongodb-test:$NEW_SHA" "$MANIFEST"
+
           # Command targets the line containing 'checksum/git-commit:'
           # It replaces everything AFTER the key (i.e., the old SHA) with the new SHA.
           sed -i "/checksum\/git-commit:/c\        checksum\/git-commit: $NEW_SHA" "$MANIFEST"
