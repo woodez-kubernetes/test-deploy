@@ -7,7 +7,7 @@ on:
 # Define environment variables for the current run
 env:
   MANIFEST_PATH: manifests/deployment.yaml # Path to your manifest inside the GITOPS_REPO
-  GITOPS_REPO: github.com/woodez-kubernetes/test-deploy.git
+  GITOPS_REPO: woodez-kubernetes/test-deploy.git
 
 jobs:        
   # 2. Update Manifest in GitOps Repository (The crucial step)
