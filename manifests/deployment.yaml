@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mongodb-test
   annotations:
-        checksum/git-commit: PLACEHOLDER_FOR_GIT_SHA
+        checksum/git-commit: 55ac6759bc0020e1c58ca2a66f7436c3a732fc20
 spec:
   replicas: 1
   selector:
