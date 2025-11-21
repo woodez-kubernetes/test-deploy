@@ -1,0 +1,65 @@
+name: CI/CD Pipeline - Build, Tag, and Update Manifest
+
+on:
+  push:
+    branches:
+      - master
+# Define environment variables for the current run
+env:
+  MANIFEST_PATH: manifests/deployment.yaml # Path to your manifest inside the GITOPS_REPO
+  GITOPS_REPO: github.com/woodez-kubernetes/test-deploy.git
+
+jobs:        
+  # 2. Update Manifest in GitOps Repository (The crucial step)
+  update_manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Clone GitOps Repository
+        # Use an SSH key or PAT (Personal Access Token) for push access
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.GITOPS_REPO }}
+          # Use a GitHub PAT secret with 'repo' scope
+          token: ${{ secrets.GITOPS_PUSH_TOKEN }} 
+          # Checkout to a subdirectory to keep things clean
+          path: gitops-repo 
+          
+      - name: 📝 Replace Placeholders in Manifest
+        run: |
+          cd gitops-repo
+          NEW_SHA="${{ github.sha }}"
+          MANIFEST="${{ env.MANIFEST_PATH }}"
+          
+          echo "Updating $MANIFEST with SHA: $NEW_SHA"
+          
+          # Replace the unique image tag placeholder (PLACEHOLDER_IMAGE_TAG)
+          # sed -i "s|PLACEHOLDER_IMAGE_TAG|$NEW_TAG|g" "$MANIFEST"
+          
+          # Command targets the line containing 'checksum/git-commit:'
+          # It replaces everything AFTER the key (i.e., the old SHA) with the new SHA.
+          sed -i "/checksum\/git-commit:/c\        checksum\/git-commit: $NEW_SHA" "$MANIFEST"
+          
+          # Check the diff to confirm changes
+          git diff
+
+      - name: 🔄 Commit and Push Changes to GitOps Repo
+        run: |
+          cd gitops-repo
+          git config user.name "kevinwood75"
+          git config user.email "kevin.wood75@gmail.com"
+          
+          git add .
+          # Check if there are actual changes before committing
+          if git status --porcelain | grep -q .; then
+            git commit -m "Automated CI: Update ${{ github.sha }} [skip ci]"
+            git push
+          else
+            echo "No changes detected in manifest. Skipping commit."
+          fi
+          
+  # 3. ArgoCD Sync (Optional/Trigger)
+  # ArgoCD automatically detects the commit from Job 2, but a manual sync can be forced.
+#  sync_argocd:
+#    runs-on: ubuntu-latest
+#    needs: [update_manifest]
+    # ... ArgoCD login and sync logic (as discussed previously) ...
