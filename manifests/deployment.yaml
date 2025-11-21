@@ -1,38 +1,76 @@
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 apiVersion: apps/v1
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 kind: Deployment
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 metadata:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   name: mongodb-test
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   namespace: woodez-database
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   labels:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     app: mongodb-testing
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   annotations:
-        checksum/git-commit: 44a969b5faf6bbf96038b30e4018261945d2f3be
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
+        checksum/git-commit: c488a5559487c1729e478ea17e19db39dbb62032
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 spec:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   replicas: 1
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   selector:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     matchLabels:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
       app: mongodb-test
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   template:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     metadata:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
       labels:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
         app: mongodb-test
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     spec:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
       containers:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
       - name: mongodb-test-container
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
         image: kwood475/python-mongodb-test:latest
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
         ports:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
         - containerPort: 3000
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 ---
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 apiVersion: v1
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 kind: Service
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 metadata:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   name: mongodb-test-service
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   namespace: woodez-database 
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   labels:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     app: mongodb-test
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
 spec:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   ports:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   - port: 3000
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     protocol: TCP
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
   selector:
+mage: kwood475/python-mongodb-test:/c        image: kwood475/python-mongodb-test:c488a5559487c1729e478ea17e19db39dbb62032
     app: mongodb-test
